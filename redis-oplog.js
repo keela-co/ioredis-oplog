@@ -32,8 +32,26 @@ export {
     getRedisPusher,
 };
 
+let config;
+
 if (process.env.REDIS_OPLOG_SETTINGS) {
-    init(JSON.parse(process.env.REDIS_OPLOG_SETTINGS));
+    config = JSON.parse(process.env.REDIS_OPLOG_SETTINGS);
 } else if (Meteor.settings.redisOplog) {
-    init(Meteor.settings.redisOplog);
+    config = Meteor.settings.redisOplog;
+}
+
+if (process.env.REDIS_OPLOG_URL) {
+    if (!config) {
+        config = {};
+    }
+
+    if (!config.redis) {
+        config.redis = {};
+    }
+
+    config.redis.url = process.env.REDIS_OPLOG_URL;
+}
+
+if (config) {
+    init(config);
 }

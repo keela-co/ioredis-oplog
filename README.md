@@ -42,7 +42,6 @@ Configure it via Meteor settings:
       "port": 6379, // Redis port
       "host": "127.0.0.1" // Redis host
     },
-    "retryIntervalMs": 10000, // Retries in 10 seconds to reconnect to redis if the connection failed
     "mutationDefaults": {
         "optimistic": true, // Does not do a sync processing on the diffs. But it works by default with client-side mutations.
         "pushToRedis": true // Pushes to redis the changes by default

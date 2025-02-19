@@ -1,23 +1,23 @@
 Package.describe({
-    name: 'cultofcoders:redis-oplog',
-    version: '2.2.1',
+    name: 'networksforchange:ioredis-oplog',
+    version: '2.2.2',
     // Brief, one-line summary of the package.
     summary: "Replacement for Meteor's MongoDB oplog implementation",
     // URL to the Git repository containing the source code for this package.
-    git: 'https://github.com/cult-of-coders/redis-oplog',
+    git: 'https://github.com/keela-co/ioredis-oplog',
     // By default, Meteor will default to using README.md for documentation.
     // To avoid submitting documentation, set this field to null.
-    documentation: 'README.md'
+    documentation: 'README.md',
 });
 
 Npm.depends({
-    redis: '3.1.2',
+    ioredis: '5.4.1',
     'deep-extend': '0.6.0',
-    'lodash.clonedeep': '4.5.0'
+    'lodash.clonedeep': '4.5.0',
 });
 
-Package.onUse(function(api) {
-    api.versionsFrom(['1.12.2', '2.8.1', '2.12']);
+Package.onUse(function (api) {
+    api.versionsFrom([ '1.12.2', '2.8.1', '2.13', '2.15' ]);
     api.use([
         'underscore',
         'ecmascript',
@@ -29,14 +29,14 @@ Package.onUse(function(api) {
         'diff-sequence',
         'id-map',
         'mongo-id',
-        'tracker'
+        'tracker',
     ]);
 
     api.mainModule('redis-oplog.js', 'server');
     api.mainModule('redis-oplog.client.js', 'client');
 });
 
-Package.onTest(function(api) {
+Package.onTest(function (api) {
     api.use('cultofcoders:redis-oplog');
 
     // extensions
@@ -53,7 +53,7 @@ Package.onTest(function(api) {
     api.use('matb33:collection-hooks@1.1.2');
     api.use('alanning:roles@3.5.1');
 
-    api.use(['meteortesting:mocha']);
+    api.use([ 'meteortesting:mocha' ]);
 
     api.mainModule('testing/main.server.js', 'server');
     api.addFiles('testing/publishComposite/boot.js', 'server');
