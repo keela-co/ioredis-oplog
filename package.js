@@ -1,5 +1,5 @@
 Package.describe({
-    name: 'keela:ioredis-oplog',
+    name: 'networksforchange:ioredis-oplog',
     version: '2.2.2',
     // Brief, one-line summary of the package.
     summary: "Replacement for Meteor's MongoDB oplog implementation",
